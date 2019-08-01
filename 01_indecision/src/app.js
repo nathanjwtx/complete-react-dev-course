@@ -12,11 +12,25 @@ var template = (
     </div>
 );
 
+const user = {
+    name: "Nathan",
+    age: 45,
+    location: "Richardson, TX"
+};
+
+function getLocation(location) {
+    if (location) {
+        return location
+    } else {
+        return "Unknown";
+    }
+}
+
 const nathanTemplate = (
     <div>
-        <h1>Nathan</h1>
-        <p>Age: 47</p>
-        <p>Location: Richardson, TX</p>
+        <h1>Name: {user.name}</h1>
+        <p>Age: {user.age}</p>
+        <p>Location: {getLocation(user.location)}</p>
     </div>
 );
 
