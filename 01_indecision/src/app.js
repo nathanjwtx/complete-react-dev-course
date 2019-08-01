@@ -1,10 +1,19 @@
 console.log("App.js is running");
 
 // JSX - JavaScript XML
+
+const app = {
+    title: "Indecision App",
+    subtitle: "What a wonderful day to learn JSX",
+    options: []
+    // options: ["One", "Two"]
+};
+
 var template = (
     <div>
-        <h1>Does this work? This is JSX from app.js</h1>
-        <p>This is some info</p>
+        <h1>{app.title}</h1>
+        {(app.subtitle) && <p>{app.subtitle}</p>}
+        {<p>{app.options.length > 0 ? "Here are your options" : "No options"}</p>}
         <ol>
             <li>Item one</li>
             <li>Item two</li>
@@ -20,20 +29,19 @@ const user = {
 
 function getLocation(location) {
     if (location) {
-        return location
-    } else {
-        return "Unknown";
+        return <p>Location: {location}</p>
     }
 }
 
 const nathanTemplate = (
     <div>
-        <h1>Name: {user.name}</h1>
-        <p>Age: {user.age}</p>
-        <p>Location: {getLocation(user.location)}</p>
+        <h1>Name: {user.name ? user.name : "Anonymous"}</h1>
+        {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
+        {getLocation(user.location)}
     </div>
 );
 
 var appRoot = document.getElementById("app");
 
-ReactDOM.render(nathanTemplate, appRoot);
+// ReactDOM.render(nathanTemplate, appRoot);
+ReactDOM.render(template, appRoot);
