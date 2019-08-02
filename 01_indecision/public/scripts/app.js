@@ -80,7 +80,53 @@ var nathanTemplate = React.createElement(
     getLocation(user.location)
 );
 
+var count = 0;
+var addOne = function addOne() {
+    count++;
+    renderCounter();
+};
+var minusOne = function minusOne() {
+    count--;
+    renderCounter();
+};
+var reset = function reset() {
+    count = 0;
+    renderCounter();
+};
+
 var appRoot = document.getElementById("app");
 
-// ReactDOM.render(nathanTemplate, appRoot);
-ReactDOM.render(template, appRoot);
+// ReactDOM.render(template, appRoot);
+
+var renderCounter = function renderCounter() {
+    var nathanTemplate2 = React.createElement(
+        "div",
+        null,
+        React.createElement(
+            "h1",
+            null,
+            "Count: ",
+            count
+        ),
+        React.createElement(
+            "button",
+            { onClick: addOne },
+            "+1"
+        ),
+        React.createElement(
+            "button",
+            { onClick: minusOne },
+            "-1"
+        ),
+        React.createElement("p", null),
+        React.createElement(
+            "button",
+            { onClick: reset },
+            "Reset"
+        )
+    );
+
+    ReactDOM.render(nathanTemplate2, appRoot);
+};
+
+renderCounter();
