@@ -3,130 +3,84 @@
 console.log("App.js is running");
 
 // JSX - JavaScript XML
-
 var app = {
     title: "Indecision App",
     subtitle: "What a wonderful day to learn JSX",
     options: []
-    // options: ["One", "Two"]
 };
 
-var template = React.createElement(
-    "div",
-    null,
-    React.createElement(
-        "h1",
-        null,
-        app.title
-    ),
-    app.subtitle && React.createElement(
-        "p",
-        null,
-        app.subtitle
-    ),
-    React.createElement(
-        "p",
-        null,
-        app.options.length > 0 ? "Here are your options" : "No options"
-    ),
-    React.createElement(
-        "ol",
-        null,
-        React.createElement(
-            "li",
-            null,
-            "Item one"
-        ),
-        React.createElement(
-            "li",
-            null,
-            "Item two"
-        )
-    )
-);
-
-var user = {
-    name: "Nathan",
-    age: 45,
-    location: "Richardson, TX"
-};
-
-function getLocation(location) {
-    if (location) {
-        return React.createElement(
-            "p",
-            null,
-            "Location: ",
-            location
-        );
+var onFormSubmit = function onFormSubmit(e) {
+    e.preventDefault();
+    var option = e.target.elements.option.value;
+    if (option) {
+        app.options.push(option);
+        e.target.elements.option.value = "";
+        render();
     }
-}
-
-var nathanTemplate = React.createElement(
-    "div",
-    null,
-    React.createElement(
-        "h1",
-        null,
-        "Name: ",
-        user.name ? user.name : "Anonymous"
-    ),
-    user.age && user.age >= 18 && React.createElement(
-        "p",
-        null,
-        "Age: ",
-        user.age
-    ),
-    getLocation(user.location)
-);
-
-var count = 0;
-var addOne = function addOne() {
-    count++;
-    renderCounter();
-};
-var minusOne = function minusOne() {
-    count--;
-    renderCounter();
-};
-var reset = function reset() {
-    count = 0;
-    renderCounter();
 };
 
-var appRoot = document.getElementById("app");
+var clearOptions = function clearOptions() {
+    app.options = [];
+    render();
+};
 
-// ReactDOM.render(template, appRoot);
-
-var renderCounter = function renderCounter() {
-    var nathanTemplate2 = React.createElement(
+var render = function render() {
+    var template = React.createElement(
         "div",
         null,
         React.createElement(
             "h1",
             null,
-            "Count: ",
-            count
+            app.title
+        ),
+        app.subtitle && React.createElement(
+            "p",
+            null,
+            app.subtitle
+        ),
+        React.createElement(
+            "p",
+            null,
+            app.options.length > 0 ? "Here are your options" : "No options"
+        ),
+        React.createElement(
+            "p",
+            null,
+            app.options.length
         ),
         React.createElement(
             "button",
-            { onClick: addOne },
-            "+1"
+            { onClick: clearOptions },
+            "Clear options"
         ),
         React.createElement(
-            "button",
-            { onClick: minusOne },
-            "-1"
+            "ol",
+            null,
+            React.createElement(
+                "li",
+                null,
+                "Item one"
+            ),
+            React.createElement(
+                "li",
+                null,
+                "Item two"
+            )
         ),
-        React.createElement("p", null),
         React.createElement(
-            "button",
-            { onClick: reset },
-            "Reset"
+            "form",
+            { onSubmit: onFormSubmit },
+            React.createElement("input", { type: "text", name: "option" }),
+            React.createElement(
+                "button",
+                null,
+                "Submit Option"
+            )
         )
     );
 
-    ReactDOM.render(nathanTemplate2, appRoot);
+    ReactDOM.render(template, appRoot);
 };
 
-renderCounter();
+var appRoot = document.getElementById("app");
+render();
