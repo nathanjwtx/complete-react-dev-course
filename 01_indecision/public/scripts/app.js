@@ -56,16 +56,13 @@ var render = function render() {
         React.createElement(
             "ol",
             null,
-            React.createElement(
-                "li",
-                null,
-                "Item one"
-            ),
-            React.createElement(
-                "li",
-                null,
-                "Item two"
-            )
+            app.options.map(function (o) {
+                return React.createElement(
+                    "li",
+                    { key: app.options.indexOf(o) },
+                    o
+                );
+            })
         ),
         React.createElement(
             "form",
@@ -83,4 +80,6 @@ var render = function render() {
 };
 
 var appRoot = document.getElementById("app");
+
+var numbers = [55, 101, 17, 1971, 11];
 render();

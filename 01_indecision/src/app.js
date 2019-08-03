@@ -30,9 +30,17 @@ const render = () => {
              <p>{app.options.length > 0 ? "Here are your options" : "No options"}</p>
              <p>{app.options.length}</p>
              <button onClick={clearOptions}>Clear options</button>
+             {/*{*/}
+             {/*    numbers.map(n => {*/}
+             {/*        return <p key={n}>{n}</p>;*/}
+             {/*    })*/}
+             {/*}*/}
              <ol>
-                 <li>Item one</li>
-                 <li>Item two</li>
+                 {
+                     app.options.map(o => {
+                         return <li key={app.options.indexOf(o)}>{o}</li>
+                     })
+                 }
              </ol>
              <form onSubmit={onFormSubmit}>
                  <input type="text" name={"option"}/>
@@ -45,4 +53,6 @@ const render = () => {
  };
 
 const appRoot = document.getElementById("app");
+
+const numbers = [55, 101, 17, 1971, 11];
 render();
