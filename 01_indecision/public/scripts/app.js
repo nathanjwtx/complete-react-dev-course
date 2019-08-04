@@ -1,13 +1,33 @@
 "use strict";
 
-var appDeets = {
-    title: "Build-It: Visibility Toggle",
-    isVisible: false
+console.log("App.js is running");
+
+// JSX - JavaScript XML
+var app = {
+    title: "Indecision App",
+    subtitle: "What a wonderful day to learn JSX",
+    options: []
 };
 
-var showHide = function showHide() {
-    appDeets.isVisible = !appDeets.isVisible;
+var onFormSubmit = function onFormSubmit(e) {
+    e.preventDefault();
+    var option = e.target.elements.option.value;
+    if (option) {
+        app.options.push(option);
+        e.target.elements.option.value = "";
+        render();
+    }
+};
+
+var clearOptions = function clearOptions() {
+    app.options = [];
     render();
+};
+
+var onMakeDecision = function onMakeDecision() {
+    var randomNum = Math.floor(Math.random() * app.options.length);
+    var option = app.options[randomNum];
+    alert(option);
 };
 
 var render = function render() {
@@ -17,22 +37,48 @@ var render = function render() {
         React.createElement(
             "h1",
             null,
-            appDeets.title
+            app.title
         ),
-        React.createElement("p", null),
-        React.createElement(
-            "div",
-            null,
-            React.createElement(
-                "button",
-                { onClick: showHide },
-                appDeets.isVisible ? "Hide" : "Show"
-            )
-        ),
-        appDeets.isVisible && React.createElement(
+        app.subtitle && React.createElement(
             "p",
             null,
-            "Now you can see me!"
+            app.subtitle
+        ),
+        React.createElement(
+            "p",
+            null,
+            app.options.length > 0 ? "Here are your options" : "No options"
+        ),
+        React.createElement(
+            "button",
+            { disabled: app.options.length === 0, onClick: onMakeDecision },
+            "What should I do?"
+        ),
+        React.createElement(
+            "button",
+            { onClick: clearOptions },
+            "Clear options"
+        ),
+        React.createElement(
+            "ol",
+            null,
+            app.options.map(function (o) {
+                return React.createElement(
+                    "li",
+                    { key: app.options.indexOf(o) },
+                    o
+                );
+            })
+        ),
+        React.createElement(
+            "form",
+            { onSubmit: onFormSubmit },
+            React.createElement("input", { type: "text", name: "option" }),
+            React.createElement(
+                "button",
+                null,
+                "Submit Option"
+            )
         )
     );
 
@@ -41,4 +87,5 @@ var render = function render() {
 
 var appRoot = document.getElementById("app");
 
+var numbers = [55, 101, 17, 1971, 11];
 render();
