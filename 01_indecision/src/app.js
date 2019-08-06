@@ -1,4 +1,17 @@
 
+class IndecisionApp extends React.Component {
+    render() {
+        return (
+            <div>
+                <Header />
+                <Action />
+                <Options />
+                <AddOption />
+            </div>
+        );
+    }
+}
+
 class Header extends React.Component {
     render() {
         return (
@@ -12,7 +25,9 @@ class Header extends React.Component {
 class Action extends React.Component {
     render() {
         return (
-            <button>What should I do?</button>
+            <div>
+                <button>What should I do?</button>
+            </div>
         );
     }
 }
@@ -20,7 +35,10 @@ class Action extends React.Component {
 class Options extends React.Component {
     render() {
         return (
-            <p>I am a placeholder</p>
+            <div>
+                <Option />
+                <Option />
+            </div>
         );
     }
 }
@@ -28,19 +46,29 @@ class Options extends React.Component {
 class AddOption extends React.Component {
     render() {
         return (
-            <button>Add a new option</button>
+            <div>
+                <button>Add a new option</button>
+            </div>
         );
     }
 }
 
-const jsx = (
-    <div>
-        <h1>Title</h1>
-        <Header />
-        <Options />
-        <AddOption />
-        <Action />
-    </div>
-);
+class Option extends React.Component {
+    render() {
+        return (
+            <div>An option</div>
+        );
+    }
+}
 
-ReactDOM.render(jsx, document.getElementById("app"));
+// const jsx = (
+//     <div>
+//         <h1>Title</h1>
+//         <Header />
+//         <Options />
+//         <AddOption />
+//         <Action />
+//     </div>
+// );
+
+ReactDOM.render(<IndecisionApp />, document.getElementById("app"));
