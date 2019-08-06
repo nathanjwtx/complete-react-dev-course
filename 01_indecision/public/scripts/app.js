@@ -183,13 +183,13 @@ function (_React$Component6) {
       return React.createElement("div", null, React.createElement("form", {
         onSubmit: this.addNewOption
       }, React.createElement("div", {
-        className: "col-4"
+        className: "col-2"
       }, React.createElement("div", {
         className: "container border border-primary"
       }, React.createElement("div", {
         className: "row align-items-start"
       }, React.createElement("div", {
-        className: "col-8"
+        className: "col-12"
       }, React.createElement("div", {
         className: "form-group"
       }, React.createElement("input", {

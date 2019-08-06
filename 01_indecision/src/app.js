@@ -94,10 +94,10 @@ class OptionForm extends React.Component {
         return (
             <div>
                 <form onSubmit={this.addNewOption}>
-                    <div className={"col-4"}>
+                    <div className={"col-2"}>
                         <div className={"container border border-primary"}>
                             <div className={"row align-items-start"}>
-                                <div className={"col-8"}>
+                                <div className={"col-12"}>
                                     <div className={"form-group"}>
                                         {/*<div className={"col-sm"}>*/}
                                             <input type="text" name={"option"} className={"form-control"}/>
