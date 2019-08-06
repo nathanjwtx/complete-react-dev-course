@@ -8,10 +8,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// import React, { component } from "react";
-// import Button from "react-bootstrap/Button";
-
-
 var Header = function (_React$Component) {
     _inherits(Header, _React$Component);
 
@@ -39,6 +35,75 @@ var Header = function (_React$Component) {
     return Header;
 }(React.Component);
 
+var Action = function (_React$Component2) {
+    _inherits(Action, _React$Component2);
+
+    function Action() {
+        _classCallCheck(this, Action);
+
+        return _possibleConstructorReturn(this, (Action.__proto__ || Object.getPrototypeOf(Action)).apply(this, arguments));
+    }
+
+    _createClass(Action, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "button",
+                null,
+                "What should I do?"
+            );
+        }
+    }]);
+
+    return Action;
+}(React.Component);
+
+var Options = function (_React$Component3) {
+    _inherits(Options, _React$Component3);
+
+    function Options() {
+        _classCallCheck(this, Options);
+
+        return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
+    }
+
+    _createClass(Options, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "p",
+                null,
+                "I am a placeholder"
+            );
+        }
+    }]);
+
+    return Options;
+}(React.Component);
+
+var AddOption = function (_React$Component4) {
+    _inherits(AddOption, _React$Component4);
+
+    function AddOption() {
+        _classCallCheck(this, AddOption);
+
+        return _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).apply(this, arguments));
+    }
+
+    _createClass(AddOption, [{
+        key: "render",
+        value: function render() {
+            return React.createElement(
+                "button",
+                null,
+                "Add a new option"
+            );
+        }
+    }]);
+
+    return AddOption;
+}(React.Component);
+
 var jsx = React.createElement(
     "div",
     null,
@@ -47,7 +112,10 @@ var jsx = React.createElement(
         null,
         "Title"
     ),
-    React.createElement(Header, null)
+    React.createElement(Header, null),
+    React.createElement(Options, null),
+    React.createElement(AddOption, null),
+    React.createElement(Action, null)
 );
 
 ReactDOM.render(jsx, document.getElementById("app"));

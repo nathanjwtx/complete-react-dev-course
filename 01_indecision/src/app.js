@@ -1,7 +1,3 @@
-// import React, { component } from "react";
-// import Button from "react-bootstrap/Button";
-
-
 
 class Header extends React.Component {
     render() {
@@ -13,10 +9,37 @@ class Header extends React.Component {
     }
 }
 
+class Action extends React.Component {
+    render() {
+        return (
+            <button>What should I do?</button>
+        );
+    }
+}
+
+class Options extends React.Component {
+    render() {
+        return (
+            <p>I am a placeholder</p>
+        );
+    }
+}
+
+class AddOption extends React.Component {
+    render() {
+        return (
+            <button>Add a new option</button>
+        );
+    }
+}
+
 const jsx = (
     <div>
         <h1>Title</h1>
-        <Header/>
+        <Header />
+        <Options />
+        <AddOption />
+        <Action />
     </div>
 );
 
