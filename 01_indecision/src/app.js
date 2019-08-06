@@ -99,12 +99,8 @@ class OptionForm extends React.Component {
                             <div className={"row align-items-start"}>
                                 <div className={"col-12"}>
                                     <div className={"form-group"}>
-                                        {/*<div className={"col-sm"}>*/}
-                                            <input type="text" name={"option"} className={"form-control"}/>
-                                        {/*</div>*/}
-                                        {/*<div className={"col-sm"}>*/}
+                                        <input type="text" name={"option"} className={"form-control"}/>
                                         <small className={"form-text text-muted"}>Add a new option</small>
-                                        {/*</div>*/}
                                     </div>
                                     <button className={"btn btn-success"}>Add new option</button>
                                 </div>
