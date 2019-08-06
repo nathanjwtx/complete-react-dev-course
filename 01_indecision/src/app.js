@@ -1,5 +1,3 @@
-// import "@babel/polyfill";
-// import { Button } from "react-bootstrap";
 
 class IndecisionApp extends React.Component {
     render() {
@@ -13,6 +11,7 @@ class IndecisionApp extends React.Component {
                 
                 <Action />
                 <Options options={options}/>
+                <OptionForm options={options}/>
                 <AddOption />
             </div>
         );
@@ -32,19 +31,35 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
+    handlePick() {
+        console.log("hello");
+    }
+
     render() {
         return (
             <div>
-                <button className="btn btn-primary">What should I do?</button>
+                <button
+                    onClick={this.handlePick}
+                    className="btn btn-primary"
+                >What should I do?</button>
             </div>
         );
     }
 }
 
 class Options extends React.Component {
+    removeAll() {
+        console.log("removed");
+    }
+
     render() {
         return (
             <div>
+                <p></p>
+                <button
+                    onClick={this.removeAll}
+                    className={"btn btn-danger"}
+                >Remove All</button>
             {
                 this.props.options.map((option) => <Option key={option} optionText={option}/>)
             }
@@ -63,6 +78,28 @@ class AddOption extends React.Component {
     }
 }
 
+class OptionForm extends React.Component {
+    addNewOption(e) {
+        e.preventDefault();
+        //use .trim() to avoid an empty string with just spaces
+        const option = e.target.elements.option.value.trim();
+        if (option) {
+            console.log(option);
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <form onSubmit={this.addNewOption}>
+                    <input type="text" name={"option"}/>
+                    <button className={"btn btn-success"}>Add new option</button>
+                </form>
+            </div>
+        );
+    }
+}
+
 class Option extends React.Component {
     render() {
         return (
@@ -72,15 +109,5 @@ class Option extends React.Component {
         );
     }
 }
-
-// const jsx = (
-//     <div>
-//         <h1>Title</h1>
-//         <Header />
-//         <Options />
-//         <AddOption />
-//         <Action />
-//     </div>
-// );
 
 ReactDOM.render(<IndecisionApp />, document.getElementById("app"));

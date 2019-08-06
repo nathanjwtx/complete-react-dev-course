@@ -18,8 +18,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-// import "@babel/polyfill";
-// import { Button } from "react-bootstrap";
 var IndecisionApp =
 /*#__PURE__*/
 function (_React$Component) {
@@ -41,6 +39,8 @@ function (_React$Component) {
         title: title,
         subTitle: subTitle
       }), React.createElement(Action, null), React.createElement(Options, {
+        options: options
+      }), React.createElement(OptionForm, {
         options: options
       }), React.createElement(AddOption, null));
     }
@@ -83,9 +83,15 @@ function (_React$Component3) {
   }
 
   _createClass(Action, [{
+    key: "handlePick",
+    value: function handlePick() {
+      console.log("hello");
+    }
+  }, {
     key: "render",
     value: function render() {
       return React.createElement("div", null, React.createElement("button", {
+        onClick: this.handlePick,
         className: "btn btn-primary"
       }, "What should I do?"));
     }
@@ -106,9 +112,17 @@ function (_React$Component4) {
   }
 
   _createClass(Options, [{
+    key: "removeAll",
+    value: function removeAll() {
+      console.log("removed");
+    }
+  }, {
     key: "render",
     value: function render() {
-      return React.createElement("div", null, this.props.options.map(function (option) {
+      return React.createElement("div", null, React.createElement("p", null), React.createElement("button", {
+        onClick: this.removeAll,
+        className: "btn btn-danger"
+      }, "Remove All"), this.props.options.map(function (option) {
         return React.createElement(Option, {
           key: option,
           optionText: option
@@ -141,10 +155,49 @@ function (_React$Component5) {
   return AddOption;
 }(React.Component);
 
-var Option =
+var OptionForm =
 /*#__PURE__*/
 function (_React$Component6) {
-  _inherits(Option, _React$Component6);
+  _inherits(OptionForm, _React$Component6);
+
+  function OptionForm() {
+    _classCallCheck(this, OptionForm);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(OptionForm).apply(this, arguments));
+  }
+
+  _createClass(OptionForm, [{
+    key: "addNewOption",
+    value: function addNewOption(e) {
+      e.preventDefault(); //use .trim() to avoid an empty string with just spaces
+
+      var option = e.target.elements.option.value.trim();
+
+      if (option) {
+        console.log(option);
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return React.createElement("div", null, React.createElement("form", {
+        onSubmit: this.addNewOption
+      }, React.createElement("input", {
+        type: "text",
+        name: "option"
+      }), React.createElement("button", {
+        className: "btn btn-success"
+      }, "Add new option")));
+    }
+  }]);
+
+  return OptionForm;
+}(React.Component);
+
+var Option =
+/*#__PURE__*/
+function (_React$Component7) {
+  _inherits(Option, _React$Component7);
 
   function Option() {
     _classCallCheck(this, Option);
@@ -160,15 +213,6 @@ function (_React$Component6) {
   }]);
 
   return Option;
-}(React.Component); // const jsx = (
-//     <div>
-//         <h1>Title</h1>
-//         <Header />
-//         <Options />
-//         <AddOption />
-//         <Action />
-//     </div>
-// );
-
+}(React.Component);
 
 ReactDOM.render(React.createElement(IndecisionApp, null), document.getElementById("app"));
