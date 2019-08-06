@@ -40,9 +40,9 @@ function (_React$Component) {
         subTitle: subTitle
       }), React.createElement(Action, null), React.createElement(Options, {
         options: options
-      }), React.createElement(OptionForm, {
+      }), React.createElement("p", null), React.createElement(OptionForm, {
         options: options
-      }), React.createElement(AddOption, null));
+      }), React.createElement("p", null), React.createElement(AddOption, null));
     }
   }]);
 
@@ -182,12 +182,25 @@ function (_React$Component6) {
     value: function render() {
       return React.createElement("div", null, React.createElement("form", {
         onSubmit: this.addNewOption
+      }, React.createElement("div", {
+        className: "col-4"
+      }, React.createElement("div", {
+        className: "container border border-primary"
+      }, React.createElement("div", {
+        className: "row align-items-start"
+      }, React.createElement("div", {
+        className: "col-8"
+      }, React.createElement("div", {
+        className: "form-group"
       }, React.createElement("input", {
         type: "text",
-        name: "option"
-      }), React.createElement("button", {
+        name: "option",
+        className: "form-control"
+      }), React.createElement("small", {
+        className: "form-text text-muted"
+      }, "Add a new option")), React.createElement("button", {
         className: "btn btn-success"
-      }, "Add new option")));
+      }, "Add new option")))))));
     }
   }]);
 

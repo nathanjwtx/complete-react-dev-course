@@ -11,7 +11,9 @@ class IndecisionApp extends React.Component {
                 
                 <Action />
                 <Options options={options}/>
+                <p></p>
                 <OptionForm options={options}/>
+                <p></p>
                 <AddOption />
             </div>
         );
@@ -92,8 +94,23 @@ class OptionForm extends React.Component {
         return (
             <div>
                 <form onSubmit={this.addNewOption}>
-                    <input type="text" name={"option"}/>
-                    <button className={"btn btn-success"}>Add new option</button>
+                    <div className={"col-4"}>
+                        <div className={"container border border-primary"}>
+                            <div className={"row align-items-start"}>
+                                <div className={"col-8"}>
+                                    <div className={"form-group"}>
+                                        {/*<div className={"col-sm"}>*/}
+                                            <input type="text" name={"option"} className={"form-control"}/>
+                                        {/*</div>*/}
+                                        {/*<div className={"col-sm"}>*/}
+                                        <small className={"form-text text-muted"}>Add a new option</small>
+                                        {/*</div>*/}
+                                    </div>
+                                    <button className={"btn btn-success"}>Add new option</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
         );
