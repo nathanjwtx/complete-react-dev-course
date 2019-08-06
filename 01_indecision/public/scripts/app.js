@@ -35,7 +35,9 @@ function (_React$Component) {
       var title = "Indecision App";
       var subTitle = "Subtitle prop";
       var options = ["One", "Two", "Three"];
-      return React.createElement("div", null, React.createElement(Header, {
+      return React.createElement("div", {
+        className: "col-2"
+      }, React.createElement(Header, {
         title: title,
         subTitle: subTitle
       }), React.createElement(Action, null), React.createElement(Options, {
@@ -105,16 +107,20 @@ var Options =
 function (_React$Component4) {
   _inherits(Options, _React$Component4);
 
-  function Options() {
+  function Options(props) {
+    var _this;
+
     _classCallCheck(this, Options);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Options).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Options).call(this, props));
+    _this.removeAll = _this.removeAll.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Options, [{
     key: "removeAll",
     value: function removeAll() {
-      console.log("removed");
+      console.log(this.props.options);
     }
   }, {
     key: "render",
@@ -183,7 +189,7 @@ function (_React$Component6) {
       return React.createElement("div", null, React.createElement("form", {
         onSubmit: this.addNewOption
       }, React.createElement("div", {
-        className: "col-2"
+        className: "col-12"
       }, React.createElement("div", {
         className: "container border border-primary"
       }, React.createElement("div", {

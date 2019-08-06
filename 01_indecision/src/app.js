@@ -6,7 +6,7 @@ class IndecisionApp extends React.Component {
         const options = ["One", "Two", "Three"];
 
         return (
-            <div>
+            <div className={"col-2"}>
                 <Header title={title} subTitle={subTitle}/>
                 
                 <Action />
@@ -50,8 +50,13 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
+    constructor(props) {
+        super(props);
+        this.removeAll = this.removeAll.bind(this);
+    }
+
     removeAll() {
-        console.log("removed");
+        console.log(this.props.options);
     }
 
     render() {
@@ -94,7 +99,7 @@ class OptionForm extends React.Component {
         return (
             <div>
                 <form onSubmit={this.addNewOption}>
-                    <div className={"col-2"}>
+                    <div className={"col-12"}>
                         <div className={"container border border-primary"}>
                             <div className={"row align-items-start"}>
                                 <div className={"col-12"}>
