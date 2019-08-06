@@ -1,4 +1,5 @@
-
+// import "@babel/polyfill";
+// import { Button } from "react-bootstrap";
 
 class IndecisionApp extends React.Component {
     render() {
@@ -34,7 +35,7 @@ class Action extends React.Component {
     render() {
         return (
             <div>
-                <button>What should I do?</button>
+                <button className="btn btn-primary">What should I do?</button>
             </div>
         );
     }

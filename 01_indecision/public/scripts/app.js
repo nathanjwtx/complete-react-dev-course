@@ -18,6 +18,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+// import "@babel/polyfill";
+// import { Button } from "react-bootstrap";
 var IndecisionApp =
 /*#__PURE__*/
 function (_React$Component) {
@@ -83,7 +85,9 @@ function (_React$Component3) {
   _createClass(Action, [{
     key: "render",
     value: function render() {
-      return React.createElement("div", null, React.createElement("button", null, "What should I do?"));
+      return React.createElement("div", null, React.createElement("button", {
+        className: "btn btn-primary"
+      }, "What should I do?"));
     }
   }]);
 
