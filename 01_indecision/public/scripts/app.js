@@ -20,12 +20,16 @@ var IndecisionApp = function (_React$Component) {
     _createClass(IndecisionApp, [{
         key: "render",
         value: function render() {
+            var title = "Indecision App";
+            var subTitle = "Subtitle prop";
+            var options = ["One", "Two", "Three"];
+
             return React.createElement(
                 "div",
                 null,
-                React.createElement(Header, null),
+                React.createElement(Header, { title: title, subTitle: subTitle }),
                 React.createElement(Action, null),
-                React.createElement(Options, null),
+                React.createElement(Options, { options: options }),
                 React.createElement(AddOption, null)
             );
         }
@@ -46,13 +50,19 @@ var Header = function (_React$Component2) {
     _createClass(Header, [{
         key: "render",
         value: function render() {
+            console.log(this.props);
             return React.createElement(
                 "div",
                 null,
                 React.createElement(
                     "h2",
                     null,
-                    "this is from header"
+                    this.props.title
+                ),
+                React.createElement(
+                    "h3",
+                    null,
+                    this.props.subTitle
                 )
             );
         }
@@ -103,8 +113,9 @@ var Options = function (_React$Component4) {
             return React.createElement(
                 "div",
                 null,
-                React.createElement(Option, null),
-                React.createElement(Option, null)
+                this.props.options.map(function (option) {
+                    return React.createElement(Option, { key: option, optionText: option });
+                })
             );
         }
     }]);
@@ -154,7 +165,7 @@ var Option = function (_React$Component6) {
             return React.createElement(
                 "div",
                 null,
-                "An option"
+                this.props.optionText
             );
         }
     }]);
