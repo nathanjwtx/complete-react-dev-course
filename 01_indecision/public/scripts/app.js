@@ -18,94 +18,74 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var Counter =
+var VisibilityToggle =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(Counter, _React$Component);
+  _inherits(VisibilityToggle, _React$Component);
 
-  function Counter(props) {
+  function VisibilityToggle(props) {
     var _this;
 
-    _classCallCheck(this, Counter);
+    _classCallCheck(this, VisibilityToggle);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Counter).call(this, props));
-    _this.plusOne = _this.plusOne.bind(_assertThisInitialized(_this));
-    _this.minusOne = _this.minusOne.bind(_assertThisInitialized(_this));
-    _this.reset = _this.reset.bind(_assertThisInitialized(_this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(VisibilityToggle).call(this, props));
+    _this.showHide = _this.showHide.bind(_assertThisInitialized(_this));
     _this.state = {
-      count: 0
+      visible: true
     };
     return _this;
   }
 
-  _createClass(Counter, [{
-    key: "plusOne",
-    value: function plusOne() {
+  _createClass(VisibilityToggle, [{
+    key: "showHide",
+    value: function showHide() {
       this.setState(function (prevState) {
         return {
-          count: prevState.count + 1
-        };
-      });
-    }
-  }, {
-    key: "minusOne",
-    value: function minusOne() {
-      this.setState(function (prevState) {
-        return {
-          count: prevState.count - 1
-        };
-      });
-    }
-  }, {
-    key: "reset",
-    value: function reset() {
-      this.setState(function () {
-        return {
-          count: 0
+          visible: !prevState.visible
         };
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return React.createElement("div", null, React.createElement("h1", null, "Count: ", this.state.count), React.createElement("button", {
-        onClick: this.plusOne
-      }, "+1"), React.createElement("button", {
-        onClick: this.minusOne
-      }, "-1"), React.createElement("button", {
-        onClick: this.reset
-      }, "Reset"));
+      return React.createElement("div", null, React.createElement("button", {
+        onClick: this.showHide
+      }, this.state.visible ? "Hide" : "Show"), this.state.visible && React.createElement("p", null, "Now you can see me!"));
     }
   }]);
 
-  return Counter;
+  return VisibilityToggle;
 }(React.Component);
 
-ReactDOM.render(React.createElement(Counter, null), document.getElementById("app")); // const addOne = () => {
-//     count++;
-//     renderCounterApp();
+ReactDOM.render(React.createElement(VisibilityToggle, null), document.getElementById("app")); // const appDeets = {
+//     title: "Build-It: Visibility Toggle",
+//     isVisible: false
+// }
+//
+// const showHide = () => {
+//     appDeets.isVisible = !appDeets.isVisible;
+//     render();
 // };
-// const minusOne = () => {
-//     count--;
-//     renderCounterApp();
-// };
-// const reset = () => {
-//     count = 0;
-//     renderCounterApp();
+//
+// const render = () => {
+//     const template = (
+//         <div>
+//             <h1>{appDeets.title}</h1>
+//             <p></p>
+//             <div>
+//                 <button onClick={showHide}>
+//                     {appDeets.isVisible ? "Hide" : "Show"}
+//                 </button>
+//             </div>
+//             {appDeets.isVisible && (
+//                 <p>Now you can see me!</p>
+//             )}
+//         </div>
+//     );
+//
+//     ReactDOM.render(template, appRoot);
 // };
 //
 // const appRoot = document.getElementById("app");
 //
-// const renderCounterApp = () => {
-//     const templateTwo = (
-//         <div>
-//             <h1>Count: {count}</h1>
-//             <button onClick={addOne}>+1</button>
-//             <button onClick={minusOne}>+1</button>
-//             <button onClick={reset}>+1</button>
-//         </div>
-//     );
-//     ReactDOM.render(templateTwo, appRoot);
-// };
-//
-// renderCounterApp();
+// render();
