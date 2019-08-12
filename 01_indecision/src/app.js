@@ -1,11 +1,12 @@
-
 class IndecisionApp extends React.Component {
     constructor(props) {
         super(props);
         this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
         this.handlePickOption = this.handlePickOption.bind(this);
+        this.handleAddOption = this.handleAddOption.bind(this);
+
         this.state = {
-            options: ["one", "two", "three"]
+            options: []
         };
     }
 
@@ -21,9 +22,23 @@ class IndecisionApp extends React.Component {
         this.setState(() => {
             const randomNum = Math.floor(Math.random() * this.state.options.length);
             const option = this.state.options[randomNum];
-            console.log(option);
         });
     }
+
+    handleAddOption(option) {
+        if (!option) {
+            return "enter valid value item to add";
+        } else if (this.state.options.indexOf(option) > -1) {
+            return "entry already exists";
+        }
+
+        this.setState((prevState) => {
+            return {
+                options: prevState.options.concat([option])
+            };
+        });
+    }
+
     render() {
         const title = "Indecision App";
         const subTitle = "Subtitle prop";
@@ -43,6 +58,7 @@ class IndecisionApp extends React.Component {
                 <p></p>
                 <OptionForm
                     options={this.state.options}
+                    handleAddOption={this.handleAddOption}
                 />
                 <p></p>
                 {/*<AddOption />*/}
@@ -53,7 +69,6 @@ class IndecisionApp extends React.Component {
 
 class Header extends React.Component {
     render() {
-        console.log(this.props);
         return (
             <div>
                 <h2>{this.props.title}</h2>
@@ -106,18 +121,31 @@ class AddOption extends React.Component {
 }
 
 class OptionForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.addNewOption = this.addNewOption.bind(this);
+        this.state = {
+            error: undefined
+        };
+    }
+
     addNewOption(e) {
         e.preventDefault();
         //use .trim() to avoid an empty string with just spaces
         const option = e.target.elements.option.value.trim();
-        if (option) {
-            console.log(option);
-        }
+        const error = this.props.handleAddOption(option);
+        this.setState(() => {
+            return {
+                error: error
+            }
+        });
+        e.target.reset();
     }
 
     render() {
         return (
             <div>
+                {this.state.error && <p>{this.state.error}</p>}
                 <form onSubmit={this.addNewOption}>
                     <div className={"col-12"}>
                         <div className={"container border border-primary"}>

@@ -31,8 +31,9 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(IndecisionApp).call(this, props));
     _this.handleDeleteOptions = _this.handleDeleteOptions.bind(_assertThisInitialized(_this));
     _this.handlePickOption = _this.handlePickOption.bind(_assertThisInitialized(_this));
+    _this.handleAddOption = _this.handleAddOption.bind(_assertThisInitialized(_this));
     _this.state = {
-      options: ["one", "two", "three"]
+      options: []
     };
     return _this;
   }
@@ -54,7 +55,21 @@ function (_React$Component) {
       this.setState(function () {
         var randomNum = Math.floor(Math.random() * _this2.state.options.length);
         var option = _this2.state.options[randomNum];
-        console.log(option);
+      });
+    }
+  }, {
+    key: "handleAddOption",
+    value: function handleAddOption(option) {
+      if (!option) {
+        return "enter valid value item to add";
+      } else if (this.state.options.indexOf(option) > -1) {
+        return "entry already exists";
+      }
+
+      this.setState(function (prevState) {
+        return {
+          options: prevState.options.concat([option])
+        };
       });
     }
   }, {
@@ -74,7 +89,8 @@ function (_React$Component) {
         options: this.state.options,
         handleDeleteOptions: this.handleDeleteOptions
       }), React.createElement("p", null), React.createElement(OptionForm, {
-        options: this.state.options
+        options: this.state.options,
+        handleAddOption: this.handleAddOption
       }), React.createElement("p", null));
     }
   }]);
@@ -96,7 +112,6 @@ function (_React$Component2) {
   _createClass(Header, [{
     key: "render",
     value: function render() {
-      console.log(this.props);
       return React.createElement("div", null, React.createElement("h2", null, this.props.title), React.createElement("h3", null, this.props.subTitle));
     }
   }]);
@@ -184,10 +199,17 @@ var OptionForm =
 function (_React$Component6) {
   _inherits(OptionForm, _React$Component6);
 
-  function OptionForm() {
+  function OptionForm(props) {
+    var _this3;
+
     _classCallCheck(this, OptionForm);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(OptionForm).apply(this, arguments));
+    _this3 = _possibleConstructorReturn(this, _getPrototypeOf(OptionForm).call(this, props));
+    _this3.addNewOption = _this3.addNewOption.bind(_assertThisInitialized(_this3));
+    _this3.state = {
+      error: undefined
+    };
+    return _this3;
   }
 
   _createClass(OptionForm, [{
@@ -196,15 +218,18 @@ function (_React$Component6) {
       e.preventDefault(); //use .trim() to avoid an empty string with just spaces
 
       var option = e.target.elements.option.value.trim();
-
-      if (option) {
-        console.log(option);
-      }
+      var error = this.props.handleAddOption(option);
+      this.setState(function () {
+        return {
+          error: error
+        };
+      });
+      e.target.reset();
     }
   }, {
     key: "render",
     value: function render() {
-      return React.createElement("div", null, React.createElement("form", {
+      return React.createElement("div", null, this.state.error && React.createElement("p", null, this.state.error), React.createElement("form", {
         onSubmit: this.addNewOption
       }, React.createElement("div", {
         className: "col-12"
