@@ -33,7 +33,7 @@ function (_React$Component) {
     _this.handlePickOption = _this.handlePickOption.bind(_assertThisInitialized(_this));
     _this.handleAddOption = _this.handleAddOption.bind(_assertThisInitialized(_this));
     _this.state = {
-      options: []
+      options: props.options
     };
     return _this;
   }
@@ -76,12 +76,10 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var title = "Indecision App";
       var subTitle = "Subtitle prop";
       return React.createElement("div", {
         className: "col-2"
       }, React.createElement(Header, {
-        title: title,
         subTitle: subTitle
       }), React.createElement(Action, {
         hasOptions: this.state.options.length > 0,
@@ -99,8 +97,16 @@ function (_React$Component) {
   return IndecisionApp;
 }(React.Component);
 
+IndecisionApp.defaultProps = {
+  options: []
+};
+
 var Header = function Header(props) {
-  return React.createElement("div", null, React.createElement("h2", null, props.title), React.createElement("h3", null, props.subTitle));
+  return React.createElement("div", null, React.createElement("h2", null, props.title), props.subTitle && React.createElement("h3", null, props.subTitle));
+};
+
+Header.defaultProps = {
+  title: "Indecision"
 };
 
 var Action = function Action(props) {
