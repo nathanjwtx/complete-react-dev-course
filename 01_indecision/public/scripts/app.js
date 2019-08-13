@@ -55,6 +55,7 @@ function (_React$Component) {
       this.setState(function () {
         var randomNum = Math.floor(Math.random() * _this2.state.options.length);
         var option = _this2.state.options[randomNum];
+        alert(option);
       });
     }
   }, {
@@ -119,35 +120,18 @@ function (_React$Component2) {
   return Header;
 }(React.Component);
 
-var Action =
-/*#__PURE__*/
-function (_React$Component3) {
-  _inherits(Action, _React$Component3);
-
-  function Action() {
-    _classCallCheck(this, Action);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Action).apply(this, arguments));
-  }
-
-  _createClass(Action, [{
-    key: "render",
-    value: function render() {
-      return React.createElement("div", null, React.createElement("button", {
-        onClick: this.props.handlePickOption,
-        className: "btn btn-primary",
-        disabled: !this.props.hasOptions
-      }, "What should I do?"));
-    }
-  }]);
-
-  return Action;
-}(React.Component);
+var Action = function Action(props) {
+  return React.createElement("div", null, React.createElement("button", {
+    onClick: props.handlePickOption,
+    className: "btn btn-primary",
+    disabled: !props.hasOptions
+  }, "What should I do?"));
+};
 
 var Options =
 /*#__PURE__*/
-function (_React$Component4) {
-  _inherits(Options, _React$Component4);
+function (_React$Component3) {
+  _inherits(Options, _React$Component3);
 
   function Options() {
     _classCallCheck(this, Options);
@@ -175,8 +159,8 @@ function (_React$Component4) {
 
 var AddOption =
 /*#__PURE__*/
-function (_React$Component5) {
-  _inherits(AddOption, _React$Component5);
+function (_React$Component4) {
+  _inherits(AddOption, _React$Component4);
 
   function AddOption() {
     _classCallCheck(this, AddOption);
@@ -196,8 +180,8 @@ function (_React$Component5) {
 
 var OptionForm =
 /*#__PURE__*/
-function (_React$Component6) {
-  _inherits(OptionForm, _React$Component6);
+function (_React$Component5) {
+  _inherits(OptionForm, _React$Component5);
 
   function OptionForm(props) {
     var _this3;
@@ -258,8 +242,8 @@ function (_React$Component6) {
 
 var Option =
 /*#__PURE__*/
-function (_React$Component7) {
-  _inherits(Option, _React$Component7);
+function (_React$Component6) {
+  _inherits(Option, _React$Component6);
 
   function Option() {
     _classCallCheck(this, Option);
@@ -275,6 +259,15 @@ function (_React$Component7) {
   }]);
 
   return Option;
-}(React.Component);
+}(React.Component); // stateless functional component
+// const User = (props) => {
+//     return (
+//         <div>
+//             <p>Name: {props.name}</p>
+//             <p>Age: {props.age}</p>
+//         </div>
+//     )
+// };
+
 
 ReactDOM.render(React.createElement(IndecisionApp, null), document.getElementById("app"));

@@ -22,6 +22,7 @@ class IndecisionApp extends React.Component {
         this.setState(() => {
             const randomNum = Math.floor(Math.random() * this.state.options.length);
             const option = this.state.options[randomNum];
+            alert(option);
         });
     }
 
@@ -78,20 +79,19 @@ class Header extends React.Component {
     }
 }
 
-class Action extends React.Component {
-    render() {
-        return (
-            <div>
-                <button
-                    onClick={this.props.handlePickOption}
-                    className="btn btn-primary"
-                    disabled={!this.props.hasOptions}
-                >
-                    What should I do?</button>
-            </div>
-        );
-    }
-}
+const Action = (props) => {
+    return (
+        <div>
+            <button
+                onClick={props.handlePickOption}
+                className="btn btn-primary"
+                disabled={!props.hasOptions}
+            >
+                What should I do?
+            </button>
+        </div>
+    );
+};
 
 class Options extends React.Component {
         render() {
@@ -177,5 +177,15 @@ class Option extends React.Component {
         );
     }
 }
+
+// stateless functional component
+// const User = (props) => {
+//     return (
+//         <div>
+//             <p>Name: {props.name}</p>
+//             <p>Age: {props.age}</p>
+//         </div>
+//     )
+// };
 
 ReactDOM.render(<IndecisionApp />, document.getElementById("app"));
