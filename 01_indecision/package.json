@@ -1,26 +1,23 @@
 {
   "name": "01_indecision",
   "version": "1.0.0",
+  "description": "first course project",
   "main": "index.js",
+  "scripts": {
+    "build": "babel src -d lib"
+  },
   "author": "nathan",
-  "license": "MIT",
-  "dependencies": {
+  "license": "ISC",
+  "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
-    "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
-    "babel-preset-env": "1.5.2",
-    "babel-preset-react": "6.24.1",
-    "bootstrap": "^4.3.1",
-    "react": "^16.8.6",
-    "react-bootstrap": "^1.0.0-beta.10",
-    "react-dom": "^16.8.6"
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
   },
-  "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ]
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "npx": "^10.2.0"
   }
 }
