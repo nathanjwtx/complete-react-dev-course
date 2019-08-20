@@ -30,6 +30,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(IndecisionApp).call(this, props));
     _this.handleDeleteOptions = _this.handleDeleteOptions.bind(_assertThisInitialized(_this));
+    _this.handleDeleteSingleOption = _this.handleDeleteSingleOption.bind(_assertThisInitialized(_this));
     _this.handlePickOption = _this.handlePickOption.bind(_assertThisInitialized(_this));
     _this.handleAddOption = _this.handleAddOption.bind(_assertThisInitialized(_this));
     _this.state = {
@@ -51,6 +52,11 @@ function (_React$Component) {
           options: []
         };
       });
+    }
+  }, {
+    key: "handleDeleteSingleOption",
+    value: function handleDeleteSingleOption(option) {
+      console.log("wibble", option);
     }
   }, {
     key: "handlePickOption",
@@ -97,7 +103,8 @@ function (_React$Component) {
         handlePickOption: this.handlePickOption
       }), React.createElement(Options, {
         options: this.state.options,
-        handleDeleteOptions: this.handleDeleteOptions
+        handleDeleteOptions: this.handleDeleteOptions,
+        handleDeleteSingleOption: this.handleDeleteSingleOption
       }), React.createElement("p", null), React.createElement(OptionForm, {
         options: this.state.options,
         handleAddOption: this.handleAddOption
@@ -135,9 +142,16 @@ var Options = function Options(props) {
   }, "Remove All"), props.options.map(function (option) {
     return React.createElement(Option, {
       key: option,
-      optionText: option
+      optionText: option,
+      handleDeleteSingleOption: props.handleDeleteSingleOption
     });
   }));
+};
+
+var Option = function Option(props) {
+  return React.createElement("div", null, props.optionText, React.createElement("button", {
+    onClick: props.handleDeleteSingleOption
+  }, "Remove"));
 };
 
 var AddOption =
@@ -226,11 +240,7 @@ function (_React$Component3) {
   }]);
 
   return OptionForm;
-}(React.Component);
-
-var Option = function Option(props) {
-  return React.createElement("div", null, props.optionText);
-}; // stateless functional component
+}(React.Component); // stateless functional component
 // const User = (props) => {
 //     return (
 //         <div>

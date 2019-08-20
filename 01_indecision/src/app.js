@@ -2,6 +2,7 @@ class IndecisionApp extends React.Component {
     constructor(props) {
         super(props);
         this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+        this.handleDeleteSingleOption = this.handleDeleteSingleOption.bind(this);
         this.handlePickOption = this.handlePickOption.bind(this);
         this.handleAddOption = this.handleAddOption.bind(this);
 
@@ -18,6 +19,10 @@ class IndecisionApp extends React.Component {
         // });
 
         this.setState(() => ({ options: [] }));
+    }
+
+    handleDeleteSingleOption(option) {
+        console.log("wibble", option);
     }
 
     handlePickOption() {
@@ -58,6 +63,7 @@ class IndecisionApp extends React.Component {
                 <Options
                     options={this.state.options}
                     handleDeleteOptions={this.handleDeleteOptions}
+                    handleDeleteSingleOption={this.handleDeleteSingleOption}
                 />
                 <p></p>
                 <OptionForm
@@ -113,8 +119,25 @@ const Options = (props) => {
                 Remove All
             </button>
         {
-            props.options.map((option) => <Option key={option} optionText={option}/>)
+            props.options.map((option) => (
+                <Option 
+                    key={option} 
+                    optionText={option}
+                    handleDeleteSingleOption={props.handleDeleteSingleOption}
+                />
+            ))
         }
+        </div>
+    );
+};
+
+const Option = (props) => {
+    return (
+        <div>
+            {props.optionText}
+            <button onClick={props.handleDeleteSingleOption}>
+                Remove
+            </button>
         </div>
     );
 };
@@ -178,13 +201,7 @@ class OptionForm extends React.Component {
     }
 }
 
-const Option = (props) => {
-    return (
-        <div>
-            {props.optionText}
-        </div>
-    );
-};
+
 
 // stateless functional component
 // const User = (props) => {
