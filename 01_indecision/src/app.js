@@ -11,11 +11,13 @@ class IndecisionApp extends React.Component {
     }
 
     handleDeleteOptions() {
-        this.setState(() => {
-            return {
-                options: []
-            };
-        });
+        // this.setState(() => {
+        //     return {
+        //         options: []
+        //     };
+        // });
+
+        this.setState(() => ({ options: [] }));
     }
 
     handlePickOption() {
@@ -33,11 +35,13 @@ class IndecisionApp extends React.Component {
             return "entry already exists";
         }
 
-        this.setState((prevState) => {
-            return {
-                options: prevState.options.concat([option])
-            };
-        });
+        // this.setState((prevState) => {
+        //     return {
+        //         options: prevState.options.concat([option])
+        //     };
+        // });
+        // implicitly returning from the arrow function rather than explicity with return
+        this.setState((prevState) => ({ options: prevState.options.concat([option])}));
     }
 
     render() {
@@ -139,11 +143,12 @@ class OptionForm extends React.Component {
         //use .trim() to avoid an empty string with just spaces
         const option = e.target.elements.option.value.trim();
         const error = this.props.handleAddOption(option);
-        this.setState(() => {
-            return {
-                error: error
-            }
-        });
+        // this.setState(() => {
+        //     return {
+        //         error: error
+        //     }
+        // });
+        this.setState(() => ({ error: error }));
         e.target.reset();
     }
 

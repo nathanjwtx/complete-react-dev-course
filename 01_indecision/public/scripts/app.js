@@ -41,6 +41,11 @@ function (_React$Component) {
   _createClass(IndecisionApp, [{
     key: "handleDeleteOptions",
     value: function handleDeleteOptions() {
+      // this.setState(() => {
+      //     return {
+      //         options: []
+      //     };
+      // });
       this.setState(function () {
         return {
           options: []
@@ -65,7 +70,13 @@ function (_React$Component) {
         return "enter valid value item to add";
       } else if (this.state.options.indexOf(option) > -1) {
         return "entry already exists";
-      }
+      } // this.setState((prevState) => {
+      //     return {
+      //         options: prevState.options.concat([option])
+      //     };
+      // });
+      // implicitly returning from the arrow function rather than explicity with return
+
 
       this.setState(function (prevState) {
         return {
@@ -174,7 +185,12 @@ function (_React$Component3) {
       e.preventDefault(); //use .trim() to avoid an empty string with just spaces
 
       var option = e.target.elements.option.value.trim();
-      var error = this.props.handleAddOption(option);
+      var error = this.props.handleAddOption(option); // this.setState(() => {
+      //     return {
+      //         error: error
+      //     }
+      // });
+
       this.setState(function () {
         return {
           error: error
