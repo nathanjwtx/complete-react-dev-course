@@ -42,11 +42,6 @@ function (_React$Component) {
   _createClass(IndecisionApp, [{
     key: "handleDeleteOptions",
     value: function handleDeleteOptions() {
-      // this.setState(() => {
-      //     return {
-      //         options: []
-      //     };
-      // });
       this.setState(function () {
         return {
           options: []
@@ -55,8 +50,15 @@ function (_React$Component) {
     }
   }, {
     key: "handleDeleteSingleOption",
-    value: function handleDeleteSingleOption(option) {
-      console.log("wibble", option);
+    value: function handleDeleteSingleOption(optionToRemove) {
+      // passed down to Options and then from Options onto Option
+      this.setState(function (prevState) {
+        return {
+          options: prevState.options.filter(function (option) {
+            return optionToRemove !== option;
+          })
+        };
+      });
     }
   }, {
     key: "handlePickOption",
@@ -76,12 +78,7 @@ function (_React$Component) {
         return "enter valid value item to add";
       } else if (this.state.options.indexOf(option) > -1) {
         return "entry already exists";
-      } // this.setState((prevState) => {
-      //     return {
-      //         options: prevState.options.concat([option])
-      //     };
-      // });
-      // implicitly returning from the arrow function rather than explicity with return
+      } // implicitly returning from the arrow function rather than explicity with return
 
 
       this.setState(function (prevState) {
@@ -150,7 +147,9 @@ var Options = function Options(props) {
 
 var Option = function Option(props) {
   return React.createElement("div", null, props.optionText, React.createElement("button", {
-    onClick: props.handleDeleteSingleOption
+    onClick: function onClick(e) {
+      props.handleDeleteSingleOption(props.optionText);
+    }
   }, "Remove"));
 };
 
@@ -199,12 +198,7 @@ function (_React$Component3) {
       e.preventDefault(); //use .trim() to avoid an empty string with just spaces
 
       var option = e.target.elements.option.value.trim();
-      var error = this.props.handleAddOption(option); // this.setState(() => {
-      //     return {
-      //         error: error
-      //     }
-      // });
-
+      var error = this.props.handleAddOption(option);
       this.setState(function () {
         return {
           error: error
@@ -240,15 +234,6 @@ function (_React$Component3) {
   }]);
 
   return OptionForm;
-}(React.Component); // stateless functional component
-// const User = (props) => {
-//     return (
-//         <div>
-//             <p>Name: {props.name}</p>
-//             <p>Age: {props.age}</p>
-//         </div>
-//     )
-// };
-
+}(React.Component);
 
 ReactDOM.render(React.createElement(IndecisionApp, null), document.getElementById("app"));

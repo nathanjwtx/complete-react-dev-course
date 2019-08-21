@@ -12,17 +12,16 @@ class IndecisionApp extends React.Component {
     }
 
     handleDeleteOptions() {
-        // this.setState(() => {
-        //     return {
-        //         options: []
-        //     };
-        // });
-
         this.setState(() => ({ options: [] }));
     }
 
-    handleDeleteSingleOption(option) {
-        console.log("wibble", option);
+    handleDeleteSingleOption(optionToRemove) {
+      // passed down to Options and then from Options onto Option
+        this.setState((prevState) => ({
+          options: prevState.options.filter((option) => {
+            return optionToRemove !== option;
+          })
+        }));
     }
 
     handlePickOption() {
@@ -39,12 +38,6 @@ class IndecisionApp extends React.Component {
         } else if (this.state.options.indexOf(option) > -1) {
             return "entry already exists";
         }
-
-        // this.setState((prevState) => {
-        //     return {
-        //         options: prevState.options.concat([option])
-        //     };
-        // });
         // implicitly returning from the arrow function rather than explicity with return
         this.setState((prevState) => ({ options: prevState.options.concat([option])}));
     }
@@ -55,7 +48,7 @@ class IndecisionApp extends React.Component {
         return (
             <div className={"col-2"}>
                 <Header subTitle={subTitle}/>
-                
+
                 <Action
                     hasOptions={this.state.options.length > 0}
                     handlePickOption={this.handlePickOption}
@@ -120,8 +113,8 @@ const Options = (props) => {
             </button>
         {
             props.options.map((option) => (
-                <Option 
-                    key={option} 
+                <Option
+                    key={option}
                     optionText={option}
                     handleDeleteSingleOption={props.handleDeleteSingleOption}
                 />
@@ -135,7 +128,11 @@ const Option = (props) => {
     return (
         <div>
             {props.optionText}
-            <button onClick={props.handleDeleteSingleOption}>
+            <button
+                onClick={(e) => {
+                  props.handleDeleteSingleOption(props.optionText)
+              }}
+            >
                 Remove
             </button>
         </div>
@@ -166,11 +163,6 @@ class OptionForm extends React.Component {
         //use .trim() to avoid an empty string with just spaces
         const option = e.target.elements.option.value.trim();
         const error = this.props.handleAddOption(option);
-        // this.setState(() => {
-        //     return {
-        //         error: error
-        //     }
-        // });
         this.setState(() => ({ error: error }));
         e.target.reset();
     }
@@ -201,16 +193,5 @@ class OptionForm extends React.Component {
     }
 }
 
-
-
-// stateless functional component
-// const User = (props) => {
-//     return (
-//         <div>
-//             <p>Name: {props.name}</p>
-//             <p>Age: {props.age}</p>
-//         </div>
-//     )
-// };
 
 ReactDOM.render(<IndecisionApp />, document.getElementById("app"));
