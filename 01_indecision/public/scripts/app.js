@@ -37,9 +37,21 @@ function (_React$Component) {
       options: props.options
     };
     return _this;
-  }
+  } // Lifecycle only available in a Class based component
+
 
   _createClass(IndecisionApp, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      console.log("mounted");
+    } //doesn't fire on initial load/mount
+
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      console.log("updated");
+    }
+  }, {
     key: "handleDeleteOptions",
     value: function handleDeleteOptions() {
       this.setState(function () {

@@ -10,6 +10,14 @@ class IndecisionApp extends React.Component {
             options: props.options
         };
     }
+    // Lifecycle only available in a Class based component
+    componentDidMount() {
+      console.log("mounted");
+    }
+    //doesn't fire on initial load/mount
+    componentDidUpdate() {
+      console.log("updated");
+    }
 
     handleDeleteOptions() {
         this.setState(() => ({ options: [] }));
