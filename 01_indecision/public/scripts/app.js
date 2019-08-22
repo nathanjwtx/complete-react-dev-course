@@ -43,13 +43,30 @@ function (_React$Component) {
   _createClass(IndecisionApp, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      console.log("mounted");
+      try {
+        var json = localStorage.getItem("options");
+        var options = JSON.parse(json);
+
+        if (options) {
+          this.setState(function () {
+            return {
+              options: options
+            };
+          });
+        }
+      } catch (e) {// Do nothing
+      }
     } //doesn't fire on initial load/mount
 
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      console.log("updated");
+    value: function componentDidUpdate(prevState) {
+      if (prevState.options.length !== this.state.options.length) {
+        var json = JSON.stringify(this.state.options);
+        localStorage.setItem("options", json);
+      }
+
+      ;
     }
   }, {
     key: "handleDeleteOptions",
