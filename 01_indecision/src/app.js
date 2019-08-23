@@ -7,10 +7,10 @@ class IndecisionApp extends React.Component {
         this.handleAddOption = this.handleAddOption.bind(this);
 
         this.state = {
-            options: []
+            options: props.options
         };
     }
-
+    
     // Lifecycle only available in a Class based component
     componentDidMount() {
       try {
@@ -91,9 +91,9 @@ class IndecisionApp extends React.Component {
     }
 }
 
-// IndecisionApp.defaultProps = {
-//     options: []
-// };
+IndecisionApp.defaultProps = {
+    options: []
+};
 
 const Header = (props) => {
     return (
@@ -132,7 +132,6 @@ const Options = (props) => {
             >
                 Remove All
             </button>
-            {props.options.length === 0 && <p>Please add an option to start</p>}
         {
             props.options.map((option) => (
                 <Option
@@ -186,11 +185,7 @@ class OptionForm extends React.Component {
         const option = e.target.elements.option.value.trim();
         const error = this.props.handleAddOption(option);
         this.setState(() => ({ error: error }));
-
-        // reset the form entry field
-        if (!error) {
-            e.target.elements.option.value = "";
-        }
+        e.target.reset();
     }
 
     render() {
