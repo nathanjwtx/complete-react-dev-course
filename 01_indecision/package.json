@@ -4,7 +4,9 @@
   "description": "first course project",
   "main": "index.js",
   "scripts": {
-    "build": "babel src -d lib"
+    "build": "babel src/app.js --out-file=public/scripts/app.js",
+    "watch": "babel src/app.js --out-file=public/scripts/app.js -w",
+    "serve": "live-server public/"
   },
   "author": "nathan",
   "license": "ISC",
@@ -13,7 +15,6 @@
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
-    "eslint": "^6.2.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
