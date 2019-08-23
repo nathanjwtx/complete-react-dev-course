@@ -6,7 +6,8 @@
   "scripts": {
     "build": "babel src/app.js --out-file=public/scripts/app.js",
     "watch": "babel src/app.js --out-file=public/scripts/app.js -w",
-    "serve": "live-server public/"
+    "serve": "live-server public/",
+    "build-webpack": "webpack"
   },
   "author": "nathan",
   "license": "ISC",
@@ -20,6 +21,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "npx": "^10.2.0"
+    "npx": "^10.2.0",
+    "webpack": "^3.1.0"
   }
 }
