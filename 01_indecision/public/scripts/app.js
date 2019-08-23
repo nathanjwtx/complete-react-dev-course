@@ -40,7 +40,15 @@ function (_React$Component) {
 
   _createClass(Counter, [{
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      var json = localStorage.getItem("count");
+      var count = JSON.parse(json);
+      this.setState(function () {
+        return {
+          count: count
+        };
+      });
+    }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevState) {
