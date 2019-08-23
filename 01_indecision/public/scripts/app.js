@@ -34,7 +34,7 @@ function (_React$Component) {
     _this.handlePickOption = _this.handlePickOption.bind(_assertThisInitialized(_this));
     _this.handleAddOption = _this.handleAddOption.bind(_assertThisInitialized(_this));
     _this.state = {
-      options: props.options
+      options: []
     };
     return _this;
   } // Lifecycle only available in a Class based component
@@ -147,10 +147,6 @@ IndecisionApp.defaultProps = {
 
 var Header = function Header(props) {
   return React.createElement("div", null, React.createElement("h2", null, props.title), props.subTitle && React.createElement("h3", null, props.subTitle));
-};
-
-Header.defaultProps = {
-  title: "Indecision"
 };
 
 var Action = function Action(props) {
