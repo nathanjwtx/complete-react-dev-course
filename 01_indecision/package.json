@@ -7,7 +7,7 @@
     "build": "babel src/app.js --out-file=public/scripts/app.js",
     "watch": "babel src/app.js --out-file=public/scripts/app.js -w",
     "serve": "live-server public/",
-    "build-webpack": "webpack"
+    "build-webpack": "webpack --watch"
   },
   "author": "nathan",
   "license": "ISC",
