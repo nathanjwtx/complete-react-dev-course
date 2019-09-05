@@ -500,22 +500,271 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-// import subtract, { square, add } from "./utils.js";
-// the default export isSenior can be called anything when importing because it is the default
-// import isSenior, { isAdult, canDrink } from "./person.js";
-// import validator from 'validator';
-// console.log(validator.isEmail("test@gmail.com"));
-// console.log("app is running!!");
-// console.log(square(4))
-// console.log(add(8, 4));
-// console.log(subtract(7, 3));
-// console.log(isAdult(19));
-// console.log(canDrink(25));
-// console.log(isSenior(64));
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
-var template = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null, "This is JSX from webpack");
-__WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(template, document.getElementById("app"));
+
+
+var IndecisionApp =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(IndecisionApp, _React$Component);
+
+  function IndecisionApp(props) {
+    var _this;
+
+    _classCallCheck(this, IndecisionApp);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(IndecisionApp).call(this, props));
+    _this.handleDeleteOptions = _this.handleDeleteOptions.bind(_assertThisInitialized(_this));
+    _this.handleDeleteSingleOption = _this.handleDeleteSingleOption.bind(_assertThisInitialized(_this));
+    _this.handlePickOption = _this.handlePickOption.bind(_assertThisInitialized(_this));
+    _this.handleAddOption = _this.handleAddOption.bind(_assertThisInitialized(_this));
+    _this.state = {
+      options: []
+    };
+    return _this;
+  } // Lifecycle only available in a Class based component
+
+
+  _createClass(IndecisionApp, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      try {
+        var json = localStorage.getItem("options");
+        var options = JSON.parse(json);
+
+        if (options) {
+          this.setState(function () {
+            return {
+              options: options
+            };
+          });
+        }
+      } catch (e) {// Do nothing
+      }
+    } //doesn't fire on initial load/mount
+
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevState) {
+      if (prevState.options.length !== this.state.options.length) {
+        var json = JSON.stringify(this.state.options);
+        localStorage.setItem("options", json);
+      }
+
+      ;
+    }
+  }, {
+    key: "handleDeleteOptions",
+    value: function handleDeleteOptions() {
+      this.setState(function () {
+        return {
+          options: []
+        };
+      });
+    }
+  }, {
+    key: "handleDeleteSingleOption",
+    value: function handleDeleteSingleOption(optionToRemove) {
+      // passed down to Options and then from Options onto Option
+      this.setState(function (prevState) {
+        return {
+          options: prevState.options.filter(function (option) {
+            return optionToRemove !== option;
+          })
+        };
+      });
+    }
+  }, {
+    key: "handlePickOption",
+    value: function handlePickOption() {
+      var _this2 = this;
+
+      this.setState(function () {
+        var randomNum = Math.floor(Math.random() * _this2.state.options.length);
+        var option = _this2.state.options[randomNum];
+        alert(option);
+      });
+    }
+  }, {
+    key: "handleAddOption",
+    value: function handleAddOption(option) {
+      if (!option) {
+        return "enter valid value item to add";
+      } else if (this.state.options.indexOf(option) > -1) {
+        return "entry already exists";
+      } // implicitly returning from the arrow function rather than explicity with return
+
+
+      this.setState(function (prevState) {
+        return {
+          options: prevState.options.concat([option])
+        };
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var subTitle = "Subtitle prop";
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        className: "col-2"
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Header, {
+        subTitle: subTitle
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Action, {
+        hasOptions: this.state.options.length > 0,
+        handlePickOption: this.handlePickOption
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Options, {
+        options: this.state.options,
+        handleDeleteOptions: this.handleDeleteOptions,
+        handleDeleteSingleOption: this.handleDeleteSingleOption
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(OptionForm, {
+        options: this.state.options,
+        handleAddOption: this.handleAddOption
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null));
+    }
+  }]);
+
+  return IndecisionApp;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+IndecisionApp.defaultProps = {
+  options: []
+};
+
+var Header = function Header(props) {
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h2", null, props.title), props.subTitle && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h3", null, props.subTitle));
+};
+
+var Action = function Action(props) {
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
+    onClick: props.handlePickOption,
+    className: "btn btn-primary",
+    disabled: !props.hasOptions
+  }, "What should I do?"));
+};
+
+var Options = function Options(props) {
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
+    onClick: props.handleDeleteOptions,
+    className: "btn btn-danger"
+  }, "Remove All"), props.options.map(function (option) {
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Option, {
+      key: option,
+      optionText: option,
+      handleDeleteSingleOption: props.handleDeleteSingleOption
+    });
+  }));
+};
+
+var Option = function Option(props) {
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, props.optionText, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
+    onClick: function onClick(e) {
+      props.handleDeleteSingleOption(props.optionText);
+    }
+  }, "Remove"));
+};
+
+var AddOption =
+/*#__PURE__*/
+function (_React$Component2) {
+  _inherits(AddOption, _React$Component2);
+
+  function AddOption() {
+    _classCallCheck(this, AddOption);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(AddOption).apply(this, arguments));
+  }
+
+  _createClass(AddOption, [{
+    key: "render",
+    value: function render() {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", null, "Add a new option"));
+    }
+  }]);
+
+  return AddOption;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+var OptionForm =
+/*#__PURE__*/
+function (_React$Component3) {
+  _inherits(OptionForm, _React$Component3);
+
+  function OptionForm(props) {
+    var _this3;
+
+    _classCallCheck(this, OptionForm);
+
+    _this3 = _possibleConstructorReturn(this, _getPrototypeOf(OptionForm).call(this, props));
+    _this3.addNewOption = _this3.addNewOption.bind(_assertThisInitialized(_this3));
+    _this3.state = {
+      error: undefined
+    };
+    return _this3;
+  }
+
+  _createClass(OptionForm, [{
+    key: "addNewOption",
+    value: function addNewOption(e) {
+      e.preventDefault(); //use .trim() to avoid an empty string with just spaces
+
+      var option = e.target.elements.option.value.trim();
+      var error = this.props.handleAddOption(option);
+      this.setState(function () {
+        return {
+          error: error
+        };
+      });
+      e.target.reset();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, this.state.error && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", null, this.state.error), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("form", {
+        onSubmit: this.addNewOption
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        className: "col-12"
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        className: "container border border-primary"
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        className: "row align-items-start"
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        className: "col-12"
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        className: "form-group"
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", {
+        type: "text",
+        name: "option",
+        className: "form-control"
+      }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("small", {
+        className: "form-text text-muted"
+      }, "Add a new option")), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("button", {
+        className: "btn btn-success"
+      }, "Add new option")))))));
+    }
+  }]);
+
+  return OptionForm;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+ReactDOM.render(__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(IndecisionApp, null), document.getElementById("app"));
 
 /***/ }),
 /* 6 */
