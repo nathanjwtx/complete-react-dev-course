@@ -4,22 +4,25 @@
   "description": "first course project",
   "main": "index.js",
   "scripts": {
-    "build": "babel src/app.js --out-file=public/scripts/app.js",
-    "watch": "babel src/app.js --out-file=public/scripts/app.js -w",
+    "build-babel": "babel src/playground/app.js --out-file=public/scripts/app.js",
+    "watch-babel": "babel src/playground/app.js --out-file=public/scripts/app.js -w",
+    "build": "webpack -w",
     "serve": "live-server public/"
   },
   "author": "nathan",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/preset-react": "^7.0.0"
+    "webpack-cli": "^3.3.10"
   },
   "dependencies": {
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/preset-env": "^7.7.1",
+    "@babel/preset-react": "^7.7.0",
     "bootstrap": "^4.3.1",
     "npx": "^10.2.0",
     "react": "^16.11.0",
-    "react-dom": "^16.11.0"
+    "react-dom": "^16.11.0",
+    "webpack": "^4.41.2"
   }
 }
