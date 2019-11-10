@@ -1,10 +1,11 @@
 import React from "react-dom";
+import {Button} from "semantic-ui-react";
 
 class AddOption extends React.Component {
     render() {
         return (
             <div>
-                <button>Add a new option</button>
+                <Button color={'green'}>Add a new option</Button>
             </div>
         );
     }

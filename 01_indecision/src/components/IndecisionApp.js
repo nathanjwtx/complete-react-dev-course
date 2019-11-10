@@ -71,7 +71,7 @@ class IndecisionApp extends React.Component {
     }
 
     render() {
-        const subTitle = "Subtitle prop";
+        const subTitle = "Indecision App";
 
         return (
             <div className={"col-2"}>

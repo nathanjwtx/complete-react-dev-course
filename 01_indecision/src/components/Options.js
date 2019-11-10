@@ -1,16 +1,17 @@
 import React from 'react';
 import {Option} from "./Option";
+import { Button } from "semantic-ui-react";
 
 const Options = (props) => {
     return (
         <div>
             <p></p>
-            <button
+            <Button
                 onClick={props.handleDeleteOptions}
-                className={"btn btn-danger"}
+                color={'red'}
             >
                 Remove All
-            </button>
+            </Button>
             {
                 props.options.map((option) => (
                     <Option

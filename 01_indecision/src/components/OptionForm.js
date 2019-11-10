@@ -1,11 +1,13 @@
 import React from 'react';
+import { Form, Button, Message } from "semantic-ui-react";
 
 class OptionForm extends React.Component {
     constructor(props) {
         super(props);
         this.addNewOption = this.addNewOption.bind(this);
         this.state = {
-            error: undefined
+            error: undefined,
+            value: ''
         };
     }
 
@@ -18,27 +20,28 @@ class OptionForm extends React.Component {
         e.target.reset();
     }
 
+    handleChange(event) {
+        this.setState({
+            value: event.target.value
+        })
+    }
+
     render() {
         return (
             <div>
                 {this.state.error && <p>{this.state.error}</p>}
-                <form onSubmit={this.addNewOption}>
-                    <div className={"col-12"}>
-                        <div className={"container border border-primary"}>
-                            <div className={"row align-items-start"}>
-                                <div className={"col-12"}>
-                                    <div className={"form-group"}>
-                                        <input type="text" name={"option"} className={"form-control"}/>
-                                        <small className={"form-text text-muted"}>Add a new option</small>
-                                    </div>
-                                    <button
-                                        className={"btn btn-success"}
-                                    >Add new option</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+                <Form onSubmit={this.addNewOption}>
+                    <Form.Input label={'Add new option'}
+                               placeholder={"Add new option here"}
+                                name={'option'}
+                                />
+                    {/*<Message*/}
+                    {/*    sucesss*/}
+                    {/*    header={"Option added"}*/}
+                    {/*    content={"New option successfully added!"}/>*/}
+                    <Button type={'submit'}
+                            color={'green'}>Submit</Button>
+                </Form>
             </div>
         );
     }
