@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Button, Message } from "semantic-ui-react";
+import { Form, Button, Message, Grid } from "semantic-ui-react";
 
 class OptionForm extends React.Component {
     constructor(props) {
@@ -30,18 +30,20 @@ class OptionForm extends React.Component {
         return (
             <div>
                 {this.state.error && <p>{this.state.error}</p>}
-                <Form onSubmit={this.addNewOption}>
-                    <Form.Input label={'Add new option'}
-                               placeholder={"Add new option here"}
-                                name={'option'}
-                                />
-                    {/*<Message*/}
-                    {/*    sucesss*/}
-                    {/*    header={"Option added"}*/}
-                    {/*    content={"New option successfully added!"}/>*/}
-                    <Button type={'submit'}
-                            color={'green'}>Submit</Button>
-                </Form>
+                <Grid columns={4}>
+                    <Form onSubmit={this.addNewOption}>
+                        <Form.Input label={'Add new option'}
+                                   placeholder={"Add new option here"}
+                                    name={'option'}
+                                    />
+                        {/*<Message*/}
+                        {/*    sucesss*/}
+                        {/*    header={"Option added"}*/}
+                        {/*    content={"New option successfully added!"}/>*/}
+                        <Button type={'submit'}
+                                color={'green'}>Submit</Button>
+                    </Form>
+                </Grid>
             </div>
         );
     }
