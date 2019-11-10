@@ -1,2 +1,6 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-console.log('app.js is running !! hello world!');
+import { IndecisionApp } from "./components/IndecisionApp";
+
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
