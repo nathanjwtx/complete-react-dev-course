@@ -2,23 +2,19 @@ import React from 'react';
 import { Form, Button, Message, Grid } from "semantic-ui-react";
 
 class OptionForm extends React.Component {
-    constructor(props) {
-        super(props);
-        this.addNewOption = this.addNewOption.bind(this);
-        this.state = {
-            error: undefined,
-            value: ''
-        };
-    }
+    state = {
+        error: "undefined",
+        value: ""
+    };
 
-    addNewOption(e) {
+    addNewOption = (e) => {
         e.preventDefault();
         //use .trim() to avoid an empty string with just spaces
         const option = e.target.elements.option.value.trim();
         const error = this.props.handleAddOption(option);
         this.setState(() => ({ error: error }));
         e.target.reset();
-    }
+    };
 
     handleChange(event) {
         this.setState({
