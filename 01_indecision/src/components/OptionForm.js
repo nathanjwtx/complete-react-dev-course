@@ -4,7 +4,8 @@ import { Form, Button, Message, Grid } from "semantic-ui-react";
 class OptionForm extends React.Component {
     state = {
         error: "undefined",
-        value: ""
+        value: "",
+        success: false
     };
 
     addNewOption = (e) => {
@@ -12,8 +13,15 @@ class OptionForm extends React.Component {
         //use .trim() to avoid an empty string with just spaces
         const option = e.target.elements.option.value.trim();
         const error = this.props.handleAddOption(option);
-        this.setState(() => ({ error: error }));
+        this.setState(() => ({
+            error: error,
+            success: true }));
         e.target.reset();
+        setTimeout(() => {
+            this.setState({
+                success: false
+            });
+        },3000);
     };
 
     handleChange(event) {
@@ -23,19 +31,24 @@ class OptionForm extends React.Component {
     }
 
     render() {
+        let message;
+        if (this.state.success) {
+            message =
+                <Message
+                    success
+                    header={"Option added"}
+                    content={"New option successfully added!"}/>
+        }
         return (
             <div>
                 {this.state.error && <p>{this.state.error}</p>}
                 <Grid columns={4}>
-                    <Form onSubmit={this.addNewOption}>
+                    <Form success onSubmit={this.addNewOption}>
                         <Form.Input label={'Add new option'}
                                    placeholder={"Add new option here"}
                                     name={'option'}
                                     />
-                        {/*<Message*/}
-                        {/*    sucesss*/}
-                        {/*    header={"Option added"}*/}
-                        {/*    content={"New option successfully added!"}/>*/}
+                        {message}
                         <Button type={'submit'}
                                 color={'green'}>Submit</Button>
                     </Form>
