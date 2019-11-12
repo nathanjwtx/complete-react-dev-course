@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
+import 'normalize.css/normalize.css';
+import './styles/styles.scss';
 
-const Layout = () => {
-    return (
-        <div>
-            <p>header</p>
-            <p>footer</p>
-        </div>
-    )
-};
+const routes = (
+    <BrowserRouter>
 
-ReactDOM.render(<p>Placeholder</p>, document.getElementById('app'));
+    </BrowserRouter>
+);
+
+ReactDOM.render(<p>hello</p>, document.getElementById('app'));
