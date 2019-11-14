@@ -12,6 +12,7 @@ const AppRouter = () => (
     <BrowserRouter>
         <Fragment>
             <Header/>
+            {/*Header won't pass props as it is not used in a route*/}
             <Switch>
                 <Route path={"/"} component={ExpenseDashboardPage} exact={true}/>
                 <Route path={"/create"} component={CreateExpensePage} />
