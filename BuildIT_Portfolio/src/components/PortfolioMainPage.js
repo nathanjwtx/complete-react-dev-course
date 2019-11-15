@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import ReactDOM, { Link } from 'react-dom';
+import { Link } from 'react-router-dom';
 
 const PortfolioMainPage = () => (
     <Fragment>
