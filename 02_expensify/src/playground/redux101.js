@@ -1,25 +1,54 @@
 import { createStore } from 'redux';
 
+
+// Action generators - functions that return action objects
+// const incrementCount = (v = {}) => ({
+//     type: 'INCREMENT',
+//     incrementBy: typeof v.inc === 'number' ? v.inc : 1
+// });
+// the above destructured is:
+// inc will default to 1 as a result of destructuring the default empty object caused
+// by no value being passed in
+const incrementCount = ({ inc = 1 } = {}) => ({
+    type: 'INCREMENT',
+    inc
+});
+
+const decrementCount = ({ dec = 1 } = {}) => ({
+    type: 'DECREMENT',
+    dec
+});
+
+// having no default value forces the user to set/pass it
+const setCount = ({ set } = {}) => ({
+    type: 'SET',
+    set
+});
+
+const resetCount = (reset= 0) => ({
+    type: 'RESET',
+    reset
+});
+
 const store = createStore((state = { count: 0 }, action) => {
     switch (action.type) {
         case "INCREMENT":
-            const incrementBy = typeof action.incrementBy === "number" ? action.incrementBy : 1;
+            // const incrementBy = typeof action.incrementBy === "number" ? action.incrementBy : 1;
             return {
-                count: state.count + incrementBy
+                count: state.count + action.inc
             };
         case "DECREMENT":
-            const decrementBy = typeof action.decrementBy === "number" ? action.decrementBy : 2;
             return {
-                count: state.count - decrementBy
+                count: state.count - action.dec
             };
         case "RESET":
             console.log("reset");
             return {
-                count: state.count = 0
+                count: action.reset
             };
         case "SET":
             return {
-                count: action.count
+                count: action.set
             };
         default:
             return state;
@@ -31,39 +60,42 @@ const unsubscribe = store.subscribe(() =>
     console.log(store.getState())
 );
 
-store.dispatch({
-    type: "INCREMENT",
-    incrementBy: 5}
-);
+store.dispatch(incrementCount({inc: 2}));
+store.dispatch(incrementCount({inc: 5}));
+// store.dispatch({
+//     type: "INCREMENT",
+//     incrementBy: 5}
+// );
+//
+// store.dispatch(
+//     { type: "INCREMENT" }
+// );
 
-store.dispatch(
-    { type: "INCREMENT" }
-);
+store.dispatch(decrementCount());
+store.dispatch(decrementCount({dec: 3}));
 
-store.dispatch({
-    type: "DECREMENT",
-    decrementBy: 2}
-);
-
-store.dispatch(
-    { type: "RESET" }
-);
-
-store.dispatch(
-    { type: "INCREMENT" }
-);
-
-store.dispatch({
-    type: "DECREMENT",
-    decrementBy: 2
-})
-
-store.dispatch(
-    { type: "INCREMENT" }
-);
-
-store.dispatch({
-    type: "SET",
-    count: 50
-});
-console.log(store.getState());
+store.dispatch(setCount({set: 10}));
+store.dispatch(resetCount());
+//
+// store.dispatch(
+//     { type: "RESET" }
+// );
+//
+// store.dispatch(
+//     { type: "INCREMENT" }
+// );
+//
+// store.dispatch({
+//     type: "DECREMENT",
+//     decrementBy: 2
+// })
+//
+// store.dispatch(
+//     { type: "INCREMENT" }
+// );
+//
+// store.dispatch({
+//     type: "SET",
+//     count: 50
+// });
+// console.log(store.getState());
