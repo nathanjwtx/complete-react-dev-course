@@ -30,7 +30,7 @@ const resetCount = (reset= 0) => ({
     reset
 });
 
-const store = createStore((state = { count: 0 }, action) => {
+const countReducer = (state = { count: 0 }, action) => {
     switch (action.type) {
         case "INCREMENT":
             // const incrementBy = typeof action.incrementBy === "number" ? action.incrementBy : 1;
@@ -53,7 +53,9 @@ const store = createStore((state = { count: 0 }, action) => {
         default:
             return state;
     }
-});
+};
+
+const store = createStore(countReducer);
 
 // by assigning to a variable, unsubscribe() can be called to unsubscribe or subscribe
 const unsubscribe = store.subscribe(() =>

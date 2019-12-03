@@ -30,6 +30,7 @@
     "sass-loader": "^8.0.0",
     "semantic-ui-react": "^0.88.1",
     "style-loader": "^1.0.0",
+    "uuid": "^3.3.3",
     "validator": "^12.0.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
