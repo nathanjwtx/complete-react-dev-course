@@ -22,6 +22,18 @@ const removeExpense = ({id} = {}) => ({
     type: 'REMOVE_EXPENSE',
     expense: id
 });
+
+const editExpense = (id, updates) => ({
+    type: 'EDIT_EXPENSE',
+    id,
+    updates
+});
+
+const setTextFilter = ({description} = {}) => ({
+    type: 'SET_TEXT_FILTER',
+    description
+});
+
 // Expenses reducer
 const expensesReducerDefaultState = [];
 
@@ -38,6 +50,17 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
             return [...state].filter(e => e.id !== action.expense);
             // could also use destructuring as follows
             // return [...state].filter(({id}) => id !== action.expense);
+        case 'EDIT_EXPENSE':
+            return [...state].map(expense => {
+                if (expense.id === action.id) {
+                    return {
+                        ...expense,
+                        ...action.updates
+                    }
+                } else {
+                    return expense;
+                }
+            });
         default:
             return state;
     }
@@ -53,11 +76,14 @@ const filtersReducerDefaultState = {
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
     switch (action.type) {
-        default: return state;
+        case 'SET_TEXT_FILTER':
+            return
+        default:
+            return state;
     }
 };
 
-// store creationn
+// store creation
 const store = createStore(
     combineReducers({
         expenses: expensesReducer,
@@ -74,6 +100,11 @@ const expense2 = store.dispatch(addExpense({description: 'coffee', amount: 400})
 
 store.dispatch(removeExpense({id: expense1.expense.id}));
 // console.log(store.getState());
+
+store.dispatch(editExpense(expense2.expense.id, {amount: 500}));
+
+store.dispatch(setTextFilter('rent'));
+store.dispatch(setTextFilter());
 
 const demoState = {
     expenses: [{
