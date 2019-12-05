@@ -29,9 +29,9 @@ const editExpense = (id, updates) => ({
     updates
 });
 
-const setTextFilter = ({description} = {}) => ({
+const setTextFilter = ({sortDescription = ''} = {}) => ({
     type: 'SET_TEXT_FILTER',
-    description
+    sortDescription
 });
 
 // Expenses reducer
@@ -77,7 +77,13 @@ const filtersReducerDefaultState = {
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
     switch (action.type) {
         case 'SET_TEXT_FILTER':
-            return
+            console.log(action.sortDescription);
+            // return a NEW object so as not to change the original
+            // then override the original sortBy value in the new object
+            return {
+                ...state,
+                sortBy: action.sortDescription
+            };
         default:
             return state;
     }
@@ -99,12 +105,14 @@ const expense1 = store.dispatch(addExpense({description: "Rent", amount: 10000})
 const expense2 = store.dispatch(addExpense({description: 'coffee', amount: 400}));
 
 store.dispatch(removeExpense({id: expense1.expense.id}));
-// console.log(store.getState());
 
 store.dispatch(editExpense(expense2.expense.id, {amount: 500}));
 
-store.dispatch(setTextFilter('rent'));
+store.dispatch(setTextFilter({sortDescription: 'rent'}));
 store.dispatch(setTextFilter());
+
+store.dispatch(sorByAmount());
+store.dispatch(sortByDate());
 
 const demoState = {
     expenses: [{
