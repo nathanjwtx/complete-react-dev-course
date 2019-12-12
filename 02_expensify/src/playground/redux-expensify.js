@@ -88,6 +88,7 @@ const expensesReducer = (state = expensesReducerDefaultState, action) => {
 // filters reducer
 const filtersReducerDefaultState = {
     id: "",
+    filterBy: '',
     sortBy: 'date',
     startDate: undefined,
     endDate: undefined
@@ -96,12 +97,12 @@ const filtersReducerDefaultState = {
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
     switch (action.type) {
         case 'SET_TEXT_FILTER':
-            console.log(action.sortDescription);
+            // console.log(action.sortDescription);
             // return a NEW object so as not to change the original
             // then override the original sortBy value in the new object
             return {
                 ...state,
-                sortBy: action.sortDescription
+                filterBy: action.sortDescription
             };
         // if the value being set isn't dynamic it can be hard coded
         // case 'SORT_BY_DATE':
@@ -111,7 +112,6 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
         //     };
         case 'SORT_BY_DATE':
         case 'SORT_BY_AMOUNT':
-            console.log(action.sortBy);
             return {
                 ...state,
                 sortBy: action.sortBy
@@ -131,6 +131,19 @@ const filtersReducer = (state = filtersReducerDefaultState, action) => {
     }
 };
 
+// Get visible expenses
+const getVisibleExpenses = (expenses, { filterBy, sortBy, startDate, endDate }) => {
+    return expenses.filter((expense) => {
+        const startDateMatch = typeof startDate !== 'number' ||
+            expense.createdAt >= startDate;
+        const endDateMatch = typeof endDate !== 'number' ||
+            expense.createdAt <= endDate;
+        const textMatch = expense.description.toLowerCase().includes(filterBy.toLowerCase());
+
+        return startDateMatch && endDateMatch && textMatch;
+    });
+};
+
 // store creation
 const store = createStore(
     combineReducers({
@@ -140,27 +153,36 @@ const store = createStore(
 );
 
 store.subscribe(() => {
-    console.log(store.getState())
+    const state = store.getState();
+    const VisibleExpenses = getVisibleExpenses(state.expenses, state.filters);
+    console.log(VisibleExpenses);
 });
 
-// const expense1 = store.dispatch(addExpense({description: "Rent", amount: 10000}));
-// const expense2 = store.dispatch(addExpense({description: 'coffee', amount: 400}));
+const expense1 = store.dispatch(addExpense({
+    description: "Rent",
+    amount: 10000,
+    createdAt: 1000}));
+const expense2 = store.dispatch(addExpense({
+    description: 'coffee',
+    amount: 400,
+    createdAt: -1000}));
 //
 // store.dispatch(removeExpense({id: expense1.expense.id}));
 //
 // store.dispatch(editExpense(expense2.expense.id, {amount: 500}));
 //
-// store.dispatch(setTextFilter({sortDescription: 'rent'}));
-// store.dispatch(setTextFilter());
+store.dispatch(setTextFilter({sortDescription: 'rent'}));
+store.dispatch(setTextFilter());
+store.dispatch(setTextFilter({sortDescription: 'cof'}));
 //
 // store.dispatch(sortByAmount({sortBy: 'amount'}));
 // store.dispatch(sortByDate({sortBy: 'date'}));
 
-store.dispatch(setStartDate({startDate: 125}));
-store.dispatch(setEndDate({endDate: 300}));
+// store.dispatch(setStartDate({startDate: 0}));
+// store.dispatch(setEndDate({endDate: 1300}));
 
-store.dispatch(setEndDate({}));
-store.dispatch(setStartDate({}));
+// store.dispatch(setEndDate({}));
+// store.dispatch(setStartDate({}));
 
 const demoState = {
     expenses: [{
