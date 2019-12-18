@@ -29,9 +29,12 @@ store.dispatch(setTextFilter({sortDescription: 'water'}));
 const state = store.getState();
 const visible = expenseSelector(state.expenses, state.filters);
 console.log(visible);
+console.log(state.filters);
 
 const jsx = (
-  <AppRouter />
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>
 );
 
 ReactDOM.render(jsx, document.getElementById('app'));
