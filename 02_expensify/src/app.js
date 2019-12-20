@@ -28,8 +28,8 @@ const gasBill = store.dispatch(addExpense({
 store.dispatch(setTextFilter({sortDescription: 'water'}));
 const state = store.getState();
 const visible = expenseSelector(state.expenses, state.filters);
-console.log(visible);
-console.log(state.filters);
+// console.log(visible);
+// console.log(state.filters);
 
 const jsx = (
   <Provider store={store}>
