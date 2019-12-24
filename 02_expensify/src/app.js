@@ -25,7 +25,7 @@ const gasBill = store.dispatch(addExpense({
   createdAt: 1500
 }));
 
-store.dispatch(setTextFilter({sortDescription: 'water'}));
+store.dispatch(setTextFilter('water'));
 const state = store.getState();
 const visible = expenseSelector(state.expenses, state.filters);
 // console.log(visible);
