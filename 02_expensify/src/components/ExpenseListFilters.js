@@ -10,7 +10,7 @@ const ExpenseListFilters = (props) => (
     }}
     />
   </div>
-)
+);
 
 // first call: map state to props
 // second call: component
