@@ -24,6 +24,7 @@ export default (state = filtersReducerDefaultState, action) => {
         //     };
         case 'SORT_BY_DATE':
         case 'SORT_BY_AMOUNT':
+          // console.log(`sortBy: ${action.sortBy}`);
             return {
                 ...state,
                 sortBy: action.sortBy

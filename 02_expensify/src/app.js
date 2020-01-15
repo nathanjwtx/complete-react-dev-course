@@ -25,7 +25,13 @@ const gasBill = store.dispatch(addExpense({
   createdAt: 1500
 }));
 
-store.dispatch(setTextFilter('water'));
+// const mortgage = store.dispatch(addExpense({
+//   description: 'mortgage',
+//   amount: 150000,
+//   createdAt: 1250
+// }));
+
+// store.dispatch(setTextFilter('water'));
 const state = store.getState();
 const visible = expenseSelector(state.expenses, state.filters);
 // console.log(visible);
